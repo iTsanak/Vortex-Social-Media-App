@@ -7,12 +7,12 @@ import { QueryProvider } from './lib/react-query/QueryProvider';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
-    <QueryProvider>
-        <AuthProvider>
-            
-            <App />
-        </AuthProvider>
-    </QueryProvider>
+        <QueryProvider>
+            <AuthProvider>
+                
+                <App />
+            </AuthProvider>
+        </QueryProvider>
     </BrowserRouter>
 );
 

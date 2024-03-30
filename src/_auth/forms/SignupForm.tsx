@@ -16,11 +16,11 @@ import { useUserContext } from "@/context/AuthContext"
   
   const SignupForm = () => {
     const { toast } = useToast()
-    const {checkAuthUser, isLoading: isUserLoading} = useUserContext();
     const navigate = useNavigate();
-
+    const {checkAuthUser, isLoading: isUserLoading} = useUserContext();
+    
+    //Queries
     const {mutateAsync: createUserAccount, isPending: isCreatingAccount} = useCreateUserAccount();
-
     const {mutateAsync: signInAccount, isPending: isSigningIn} = useSignInAccount();
 
     // 1. Define your form.
@@ -50,16 +50,17 @@ import { useUserContext } from "@/context/AuthContext"
       // If the session is not created, display an error message
       if(!session){
         return toast({title: "Sign in failed. Please try again."})
+        //navigate('/sign-in');
       }
 
       const isLoggedIn = await checkAuthUser();
       if(isLoggedIn){
         form.reset();
         navigate('/');
-      } else{
+      } else {
         return toast({title: "Sign up failed. Please try again."})
-      }
-    }  
+      } 
+    }
     
     return (
       <Form {...form}>
@@ -126,7 +127,7 @@ import { useUserContext } from "@/context/AuthContext"
               )}
             />
             <Button type="submit" className="shad-button_primary">
-              {isCreatingAccount ? ( //**************************************************
+              {isCreatingAccount ? (
                 <div className="flex-center gap-2">
                   <Loader/> Loading...
                 </div>
