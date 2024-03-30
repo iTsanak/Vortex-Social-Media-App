@@ -49,16 +49,19 @@ const LeftSidebar = () => {
 
             <ul className='flex flex-col gap-6'>
                 {sidebarLinks.map((link: INavLink) => {
+                    const isActive = pathname === link.route;
                     return(
                         <li key={link.label}
-                        className='leftsidebar-link'>
+                        className={`leftsidebar-link group ${
+                            isActive && 'bg-primary-500'
+                            }`}>
                             <NavLink to={link.route}
                             className='flex gap-4 items-center p-4'
                             >
                                 <img
                                     src={link.imgURL}
                                     alt={link.label}
-                                    className='group-hover:invert-white'
+                                    className={`group-hover:invert-white ${isActive && 'invert-white'}`}
                                     />
                                 {link.label}
                             </NavLink>
@@ -67,6 +70,16 @@ const LeftSidebar = () => {
                 })}   
             </ul>
         </div>
+
+    <div className='flex justify-start'>
+        <Button variant='ghost' className='shad_button_ghost' onClick={() => signOut()}>
+            <div className='flex items-center'>
+                <img src='/assets/icons/logout.svg' alt='logout' className='mr-2 h-5 w-5' />
+                <p className='small-medium lg:base-medium items-start p-4'>Logout</p>
+            </div>
+        </Button>
+    </div>
+
     </nav>
   )
 }
