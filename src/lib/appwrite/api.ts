@@ -106,22 +106,52 @@ export async function signOutAccount(){
     }
 }
 
+//Create a new post
 export async function createPost(post: INewPost){
     try{
+        //Upload image to storage
         const uploadedFile = await uploadFile(post.file[0])
         if(!uploadedFile) throw Error;
         
         //Get file url
-        const fileUrl = getFilePreview(uploadedFile.$id);
-        if(!fileUrl) {
+        const fileUrlPromise = getFilePreview(uploadedFile.$id);
+        if(!fileUrlPromise) {
             deleteFile(uploadedFile.$id);
             throw Error;
         }
+        //Wait for the file url
+        const fileUrl = await fileUrlPromise;
+
+        //Convert tags in an array
+        const tags = post.tags?.replace(/ /g,'').split(',') || [];
+        
+        //Save the post to the database
+        const newPost = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            ID.unique(),
+            {
+                creator: post.userId,
+                caption: post.caption,
+                imageUrl: fileUrl,
+                imageId: uploadedFile.$id,
+                location: post.location,
+                tags: tags,
+            }
+        )
+
+        if(!newPost){
+            await deleteFile(uploadedFile.$id)
+            throw Error;
+        }
+
+        return newPost;
     } catch(error){
         console.log(error);
     }
 }
 
+//Upload a file to the storage
 export async function uploadFile(file: File){
     try{
         const uploadedFile = await storage.createFile(
@@ -135,6 +165,7 @@ export async function uploadFile(file: File){
     }
 }
 
+//Get the file preview
 export async function getFilePreview(fileId: string){
     try{
         const fileUrl =  storage.getFilePreview(
@@ -145,12 +176,14 @@ export async function getFilePreview(fileId: string){
             ImageGravity.Top,
             100           
         );
+        if (!fileUrl) throw Error;
         return fileUrl;
     } catch(error){
         console.log(error);
     }
 }
 
+//Delete a file from the storage
 export async function deleteFile(fileId: string){
     try{
         await storage.deleteFile(
@@ -158,6 +191,21 @@ export async function deleteFile(fileId: string){
             fileId
         );
         return { status: 'ok'}
+    } catch(error){
+        console.log(error);
+    }
+}
+
+export async function getRecentPosts(){
+    try {
+        const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postCollectionId,
+        //[Query.orderDesc('$createdAt'), Query.limit(20)] //CHECK THIS
+        )
+
+        if(!posts) throw Error;
+        return posts;
     } catch(error){
         console.log(error);
     }
