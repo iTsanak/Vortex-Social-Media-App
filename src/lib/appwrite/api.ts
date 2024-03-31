@@ -113,14 +113,12 @@ export async function createPost(post: INewPost){
         const uploadedFile = await uploadFile(post.file[0])
         if(!uploadedFile) throw Error;
         
-        //Get file url
-        const fileUrlPromise = getFilePreview(uploadedFile.$id);
-        if(!fileUrlPromise) {
+        //Get file url  
+        const fileUrl = getFilePreview(uploadedFile.$id);
+        if(!fileUrl) {
             deleteFile(uploadedFile.$id);
             throw Error;
-        }
-        //Wait for the file url
-        const fileUrl = await fileUrlPromise;
+        } 
 
         //Convert tags in an array
         const tags = post.tags?.replace(/ /g,'').split(',') || [];
@@ -166,7 +164,7 @@ export async function uploadFile(file: File){
 }
 
 //Get the file preview
-export async function getFilePreview(fileId: string){
+export function getFilePreview(fileId: string){
     try{
         const fileUrl =  storage.getFilePreview(
             appwriteConfig.storageId,
