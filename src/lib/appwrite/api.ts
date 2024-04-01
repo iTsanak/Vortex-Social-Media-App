@@ -194,6 +194,7 @@ export async function deleteFile(fileId: string){
     }
 }
 
+//Get recent posts for Home feed
 export async function getRecentPosts(){
     try {
         const posts = await databases.listDocuments(
@@ -204,6 +205,61 @@ export async function getRecentPosts(){
 
         if(!posts) throw Error;
         return posts;
+    } catch(error){
+        console.log(error);
+    }
+}
+
+//Like a post
+export async function likePost(postId: string, likesArray: string[]){
+    try {
+        const updatePost = await databases.updateDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId,
+            postId,
+            {
+                likes: likesArray
+            }
+        )
+
+        if(!updatePost) throw Error;
+        return updatePost;
+    } catch(error){
+        console.log(error);
+    }
+}
+
+//Save the post to the saved posts of the current user
+export async function savePost(postId: string, userId: string){
+    try {
+        const updatePost = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.savesColletionId,
+            ID.unique(),
+            {
+                user: userId,
+                post: postId
+            } 
+        )
+
+        if(!updatePost) throw Error;
+        return updatePost;
+    } catch(error){
+        console.log(error);
+    }
+}
+
+//Unsave the saved posts of the current user
+export async function DeleteSavedPost(savedRecordId: string){
+    try {
+        const statusCode = await databases.deleteDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.savesColletionId,
+            savedRecordId
+        )
+
+        if(!statusCode) throw Error;
+        return statusCode;
     } catch(error){
         console.log(error);
     }
