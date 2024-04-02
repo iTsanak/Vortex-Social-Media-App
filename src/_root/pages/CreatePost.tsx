@@ -1,5 +1,4 @@
 import PostForm from '@/components/forms/PostForm'
-import React from 'react'
 
 const CreatePost = () => {
   return (
@@ -16,7 +15,7 @@ const CreatePost = () => {
             Create Post
           </h2>
         </div>
-        <PostForm />
+        <PostForm action='Create' />
       </div>
     </div>
   )
