@@ -5,13 +5,13 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 
 type PostStatsProps = {
-    post: Models.Document;
+    post?: Models.Document;
     userId: string;
 }
 
 const PostStats = ({ post, userId }: PostStatsProps) => {
     //Get the likes list for a post
-    const likesList = post.likes.map((user: Models.Document) =>user.$id);
+    const likesList = post?.likes.map((user: Models.Document) =>user.$id);
     //States
     const [likes, setLikes] = useState(likesList);
     const [isSaved, setIsSaved] = useState(false);
@@ -24,7 +24,8 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
     const { data: currentUser } = useGetCurrentUser();
 
     //Find if the record exists, in the array of the user that saved the post 
-    const savedPostRecord = currentUser?.save.find((record: Models.Document) => record.post.$id === post.$id);
+    const savedPostRecord = currentUser?.save.find((record: 
+        Models.Document) => record.post.$id === post?.$id);
     
     useEffect(() => {
         //Falsey value check
@@ -46,7 +47,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         }
 
         setLikes(newLikes);
-        likePost({postId: post.$id, likesArray: newLikes })
+        likePost({postId: post?.$id || '', likesArray: newLikes })
     }
     const handleSavePost = (e: React.MouseEvent) => {
         //On click stop and dont redirect to post
@@ -57,7 +58,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
             setIsSaved(false);
             deleteSavedPost(savedPostRecord.$id);
         } else { //else save it
-        savePost({postId: post.$id, userId});
+        savePost({postId: post?.$id || '', userId});
         setIsSaved(true);
         }
     }
