@@ -1,4 +1,4 @@
-import { ID, ImageGravity, Query } from 'appwrite';
+import { ID, Query } from 'appwrite';
 import { INewPost, INewUser, IUpdatePost } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from './config';
 
@@ -57,7 +57,7 @@ export async function saveUserToDB(user: {
 //Sign in a user account using email and password and return the session
 export async function signInAccount(user: {email: string; password: string;}){
     try{
-        const session = await account.createEmailPasswordSession(user.email, user.password);
+        const session = await account.createEmailSession(user.email, user.password);
         return session;
     }catch(error){
         console.log(error);
@@ -85,7 +85,7 @@ export async function getCurrentUser() {
         const currentUser = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.userCollectionId,
-            //[Query.equal('accountId', currentAccount.$id)]
+            [Query.equal('accountId', currentAccount.$id)]
         )
 
         if(!currentUser) throw Error;
@@ -171,7 +171,7 @@ export function getFilePreview(fileId: string){
             fileId,
             2000,
             2000,
-            ImageGravity.Top,
+            'top',
             100           
         );
         if (!fileUrl) throw Error;
@@ -200,7 +200,7 @@ export async function getRecentPosts(){
         const posts = await databases.listDocuments(
         appwriteConfig.databaseId,
         appwriteConfig.postCollectionId,
-        //[Query.orderDesc('$createdAt'), Query.limit(20)] //CHECK THIS
+        [Query.orderDesc('$createdAt'), Query.limit(20)] //CHECK THIS
         )
 
         if(!posts) throw Error;
@@ -353,15 +353,15 @@ export async function deletePost(postId: string, imageId: string){
 
 //Get posts for infinite scrolling
 export async function getInfinitePosts({ pageParam }: {pageParam: number}){
-    //const queries = [Query.orderDesc('$updateAt'), Query.limit(10)]
+    const queries = [Query.orderDesc('$updatedAt'), Query.limit(10)]
 
-    // if(pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
+    if(pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
 
     try{
         const posts = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.postCollectionId,
-            // queries
+            queries
         )
 
         if(!posts) throw Error;
