@@ -353,15 +353,15 @@ export async function deletePost(postId: string, imageId: string){
 
 //Get posts for infinite scrolling
 export async function getInfinitePosts({ pageParam }: {pageParam: number}){
-    //const queries: any[] = [Query.orderDesc('$updateAt'), Query.limit(10)]
+    //const queries = [Query.orderDesc('$updateAt'), Query.limit(10)]
 
-    //if(pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
+    // if(pageParam) queries.push(Query.cursorAfter(pageParam.toString()));
 
     try{
         const posts = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.postCollectionId,
-            //queries
+            // queries
         )
 
         if(!posts) throw Error;
@@ -372,8 +372,7 @@ export async function getInfinitePosts({ pageParam }: {pageParam: number}){
     }
 }
 
-
-
+//Search posts
 export async function searchPosts(searchTerm: string){
 
     try{

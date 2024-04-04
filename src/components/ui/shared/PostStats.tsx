@@ -32,6 +32,8 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
         setIsSaved(!!savedPostRecord)
     }, [currentUser])
 
+    
+
     //Function for liking and disliking
     const handleLikePost = (e: React.MouseEvent) => {
         //On click stop and dont redirect to post
