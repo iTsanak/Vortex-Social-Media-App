@@ -6,7 +6,7 @@ const Profile = () => {
   const { user } = useUserContext();
 
   return (
-    <div className='small-medium lg:base-medium py-5'>{user.name}</div>
+    <div className='small-medium lg:base-medium py-5'> {user.name}</div>
   )
 }
 
