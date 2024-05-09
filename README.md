@@ -53,6 +53,7 @@ Explore "Vortex" the social media app with this user-friendly platform that has 
 <img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Explore-page.png" alt="Explore page">
 
 👉 **Like and Save Functionality**: Enable users to like and save posts, with dedicated pages for managing liked and saved content
+<img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Home-page.png" alt="Home page">
 
 👉 **Detailed Post Page**: A detailed post page displaying content and related posts for an immersive user experience
 
