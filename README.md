@@ -50,7 +50,7 @@ Explore "Vortex" the social media app with this user-friendly platform that has 
 <img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Signup-page.png" alt="Sign up">
 
 👉 **Explore Page**: Homepage for users to explore posts, with a featured section for top creators
-<img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Signup-page.png" alt="Explore page">
+<img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Explore-page.png" alt="Explore page">
 
 👉 **Like and Save Functionality**: Enable users to like and save posts, with dedicated pages for managing liked and saved content
 
@@ -66,6 +66,7 @@ Explore "Vortex" the social media app with this user-friendly platform that has 
 👉 **Edit Post Functionality**: Provide users with the ability to edit the content of their posts at any time
 
 👉 **Responsive UI with Bottom Bar**: A responsive UI with a bottom bar, enhancing the mobile app feel for seamless navigation
+
 <img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Mobile-homepage.png" alt="Moble home page">
 
 <img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Mobile-signup.png" alt="Mobile sign up">
