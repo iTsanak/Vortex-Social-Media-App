@@ -1,7 +1,7 @@
 <div align="center">
   <br />
     <a  target="_blank">
-      <img src="https://github.com/adrianhajdin/social_media_app/assets/151519281/be514a19-3cbb-48b7-9acd-2cf4d2e319c4" alt="Project Banner">
+      <img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Signup-page.png" alt="Project Banner">
     </a>
   <br />
 
@@ -47,6 +47,7 @@ Explore "Vortex" the social media app with this user-friendly platform that has 
 ## <a name="features">🔋 Features</a>
 
 👉 **Authentication System**: A robust authentication system ensuring security and user privacy
+<img src="https://github.com/iTsanak/Vortex-Social-Media-App/blob/main/public/assets/images/Signup-page.png" alt="Sign up">
 
 👉 **Explore Page**: Homepage for users to explore posts, with a featured section for top creators
 
