@@ -74,7 +74,7 @@ export async function getAccount() {
     }
   }
 
-// Get the current user #TO-DO
+// Get the current user from the database
 export async function getCurrentUser() {
     try {
         const currentAccount = await getAccount();
@@ -389,3 +389,8 @@ export async function searchPosts(searchTerm: string){
         console.log(error);
     }
 }
+
+
+//export async function getUsers() {}
+// I added the Rightsidebar file and and put in the root layout need to do the function
+//above and import in the rightsidebar file
