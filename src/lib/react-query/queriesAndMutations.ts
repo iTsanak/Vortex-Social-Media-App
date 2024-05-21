@@ -176,6 +176,7 @@ export const useGetPosts = () => {
     })
 }
 
+//Search posts
 export const useSearchPosts = (searchTerm: string) => {
     return useQuery({
         queryKey: [QUERY_KEYS.SEARCH_POSTS, searchTerm],
@@ -184,6 +185,7 @@ export const useSearchPosts = (searchTerm: string) => {
     })
 }
 
+//Get all users
 export const useGetUsers = (limit?: number) => {
     return useQuery({
         queryKey: [QUERY_KEYS.GET_USERS],

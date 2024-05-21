@@ -390,17 +390,13 @@ export async function searchPosts(searchTerm: string){
     }
 }
 
-
-//export async function getUsers() {}
-// I added the Rightsidebar file and and put in the root layout need to do the function
-//above and import in the rightsidebar file
 // Get the users from the database
 export async function getUsers(limit?: number) {
     try {
         const users = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.userCollectionId,
-            [Query.orderDesc("$createdAt"), Query.limit(limit? limit : 8)], //double check this limit maybe leave as 10 only
+            [Query.orderDesc("$createdAt"), Query.limit(limit? limit : 6)], //double check this limit maybe leave as 10 only
         )
 
         if(!users) throw Error;
