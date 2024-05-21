@@ -238,6 +238,13 @@
     @apply sticky top-0 z-50 md:hidden bg-dark-2 w-full;
   }
 
+  /* Right Sidebar */
+  .rightsidebar {
+    @apply hidden md:block px-6 py-10 flex flex-col justify-between min-w-[300px] bg-dark-2;
+  }
+
+
+
   /* User card */
   .user-card {
     @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-5 py-8;
