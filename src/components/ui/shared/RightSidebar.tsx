@@ -10,7 +10,7 @@ const RightSidebar = () => {
 
   return (
     <aside className='rightsidebar hidden md:block px-6 py-10 bg-dark-2 min-w-[300px]'>
-      <h2 className='h3-bold md:h2-bold text-left w-full'>Top Creators</h2>
+      <h2 className='h3-bold md:h2-bold text-left w-full py-4'>Top Creators</h2>
       {isUserLoading ? (
         <Loader />
       ) : isErrorCreators ? (
